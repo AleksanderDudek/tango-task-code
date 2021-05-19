@@ -1,5 +1,7 @@
 
+import { AppBar, Button, Toolbar } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import House from '../models/House';
 import { getHouse } from '../service/httpService';
 
@@ -13,7 +15,7 @@ function HouseDetails(props: any) {
 
     useEffect(() => {
         console.log('triggered api');
-        getHouse(props.match.params.apiUrl).then(data => data.json()).then(values => {
+        getHouse(props.match.params.apiUrl).then(response => response.data).then(values => {
             console.log(values);
             setCurrentHouse(values);
         }).then((concArray) => {
@@ -23,6 +25,11 @@ function HouseDetails(props: any) {
 
     return (
         <>
+        <AppBar position="sticky" color="default">
+        <Toolbar>
+            <Link to={process.env.PUBLIC_URL + "/"}>Go back</Link>
+        </Toolbar>
+      </AppBar>     
             {isLoading ? 'Loading...' :
                 <>
                     <div>

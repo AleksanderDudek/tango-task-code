@@ -77,7 +77,7 @@ function getAlliegences(allegiances: Array<string>, houses: Array<House>) {
     return housesAndUris.map((item: HousesAndUris) =>
         <>
             <Link
-                key={item.houseName}
+                key={item.houseName+item.houseUrl}
                 to={{
                     pathname: "/house/"+item.houseUrl,
                 }}>
@@ -125,26 +125,28 @@ function CharactersTable(data: IProps) {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Character</TableCell>
-                        <TableCell align="right">Alive</TableCell>
-                        <TableCell align="right">Gender</TableCell>
-                        <TableCell align="right">Culture</TableCell>
-                        <TableCell align="right">Allegiances</TableCell>
-                        <TableCell align="right"># of Books</TableCell>
+                        <TableCell key="Index">Nr</TableCell>
+                        <TableCell key="Character">Character</TableCell>
+                        <TableCell align="right" key="Alive">Alive</TableCell>
+                        <TableCell align="right" key="Gender">Gender</TableCell>
+                        <TableCell align="right" key="Culture">Culture</TableCell>
+                        <TableCell align="right" key="Allegiances">Allegiances</TableCell>
+                        <TableCell align="right" key="Books"># of Books</TableCell>
 
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {data.characters.map((row: Character, index: number) => (
                         <TableRow key={row.name + index}>
-                            <TableCell component="th" scope="row">
+                            <TableCell key={"Index"+ index}>{index+1}</TableCell>
+                            <TableCell key={row.name + index + index} component="th" scope="row">
                                 {getFullName(row.name, row.aliases)}
                             </TableCell>
-                            <TableCell align="right">{getCurrentStatus(row.died, row.born)}</TableCell>
-                            <TableCell align="right">{getGender(row.gender)}</TableCell>
-                            <TableCell align="right">{getCulture(row.culture)}</TableCell>
-                            <TableCell align="right">{getAlliegences(row.allegiances, data.houses)}</TableCell>
-                            <TableCell align="right">{row.books.length + row.povBooks.length}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'alive'}>{getCurrentStatus(row.died, row.born)}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'gender'}>{getGender(row.gender)}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'culture'}>{getCulture(row.culture)}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'houses'}>{getAlliegences(row.allegiances, data.houses)}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'books'}>{row.books.length + row.povBooks.length}</TableCell>
 
                         </TableRow>
                     ))}

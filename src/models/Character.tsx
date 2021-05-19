@@ -17,3 +17,6 @@ export default interface Character {
     gender: string;
   }
   
+  export interface HeaderLinks {
+    [key: string]: any
+  }
