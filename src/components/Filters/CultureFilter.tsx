@@ -10,7 +10,6 @@ function CultureFilter(props: any) {
     
     const onTypingDone = (culture: string) => {
         //set state 
-        console.log('wololololo ', culture);
         props.setCulture(culture);
     }
 

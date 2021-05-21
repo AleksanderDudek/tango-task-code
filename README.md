@@ -12,6 +12,7 @@ There are certain aspects that will be considered when evaluating your solution:
 - expertise in working with CSS +
 - expertise in calling external APIs +
 
+
 Background
 
 Your task is to implement a simple React app for displaying data from An API of Ice And

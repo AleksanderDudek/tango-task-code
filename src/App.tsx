@@ -86,14 +86,11 @@ function App(props: any) {
         setCultureError(false);
         return response.data;
       }, rejection => {
-        console.log('1st');
-        console.log(rejection);
 
         //simplified error flow
         setCultureError(true);
         return characters;
       }).then(data => {
-        console.log(characters);
         setCharacters(data);
       }),
       getHouses().then( response => { return response.data;
@@ -107,11 +104,6 @@ function App(props: any) {
     })
     }, []);
 
-  //
-  useEffect(() => {
-    console.log(linkHeaders);
-  }, [linkHeaders])
-
   //get characters when filters change or page number is changed
   useEffect(() => {
     setIsLoading(true);
@@ -119,29 +111,24 @@ function App(props: any) {
     //match some of the words 
     getCharacters(currentPage, perPage, genderFilter, cultureFilter).then( response => {
       const links = parseLinkHeaders(response.headers.link);
-      console.log('culture ok');
        //simplified error flow
        setCultureError(false);
       setLinkHeaders(links);
       return response.data;
     }, rejection => {
-      console.log('1st');
-      console.log(rejection);
+
        //simplified error flow
        setCultureError(true);
       return characters;
     }).then(data => {
-      console.log(characters);
       setCharacters(data);
     }).then((concArray) => {
     setIsLoading(false);
   }).catch(error => { 
     //some error logger
     //simplified error flow
-    console.log('culture not ok');
     setCultureError(true);
-    console.log('2nd');
-    console.log(error);
+
     setIsLoading(false);
   })
     //create correct api 'shot'

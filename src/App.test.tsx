@@ -1,43 +1,94 @@
-import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount } from "enzyme";
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Adapter from 'enzyme-adapter-react-16';
+
+import HouseCard from "./components/HouseCard";
+import House from "./models/House";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 
-import App from './App';
-
 let container;
 
-// //setup
-// beforeEach(() => {
-//   container = document.createElement('div');
-//   document.body.appendChild(container);
-// });
+describe('House component ', () => {
 
-// //cleanup
-// afterEach(() => {
-//   document.body.removeChild(container);
-//   container = null;
-// });
+  it('displays \'No words\' when houses lacks words', () => {
+    const mockedHouse: House = {
+      url: 'https://mehmme.url',
+      name: 'string4',
+      region: 'string3',
+      coatOfArms: 'string2',
+      words: '',
+      titles: ['sir ser'],
+      seats: ['doge', 'shiba'],
+      currentLord: 'mana',
+      heir: 'coins',
+      overlord: 'rule',
+      founded: 'some year',
+      founder: 'some guy',
+      diedOut: 'perhaps 123 Y',
+      ancestralWeapons: [''],
+      cadetBranches: ['jake', 'philip'],
+      swornMembers: ['moon', 'cake', 'final', 'space'],
+    }
 
+    const container = shallow(<HouseCard currentHouse={mockedHouse} />);
 
+    const words = container.find('#words').html();
 
-it("renders withour crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);});
+    expect(words).toContain('No words');
+  });
 
-it("renders progress when characters and houses", () => {
-  const wrapper = mount(<App />);
+  it('displays \'No\' when a house is still alive', () => {
+    const mockedHouse: House = {
+      url: 'https://mehmme.url',
+      name: 'string4',
+      region: 'string3',
+      coatOfArms: 'string2',
+      words: 'asdasdasdasdasd',
+      titles: ['sir ser'],
+      seats: ['doge', 'shiba'],
+      currentLord: 'mana',
+      heir: 'coins',
+      overlord: 'shiba',
+      founded: 'some year',
+      founder: 'some guy',
+      diedOut: '',
+      ancestralWeapons: [''],
+      cadetBranches: ['jake', 'philip'],
+      swornMembers: ['moon', 'cake', 'final', 'space'],
+    }
 
-  const progress = wrapper.find('#progressSpinne');
-  
-  expect(progress).toBeTruthy();
+    const container = shallow(<HouseCard currentHouse={mockedHouse} />);
+
+    const diedOut = container.find('#diedOut').html();
+
+    expect(diedOut).toContain('No');
+  });
+
+  it('displays \'No\' when houses lacks overlord', () => {
+    const mockedHouse: House = {
+      url: 'https://mehmme.url',
+      name: 'string4',
+      region: 'string3',
+      coatOfArms: 'string2',
+      words: 'Some words are appreciated',
+      titles: ['sir ser'],
+      seats: ['doge', 'shiba'],
+      currentLord: 'mana',
+      heir: 'coins',
+      overlord: '',
+      founded: 'some year',
+      founder: 'some guy',
+      diedOut: 'perhaps 123 Y',
+      ancestralWeapons: [''],
+      cadetBranches: ['jake', 'philip'],
+      swornMembers: ['moon', 'cake', 'final', 'space'],
+    }
+
+    const container = shallow(<HouseCard currentHouse={mockedHouse} />);
+
+    const overlord = container.find('#overlord').html();
+
+    expect(overlord).toContain('No');
+  });
 });
-
-// it("renders table when characters and houses are loaded", () => {
-//   const { container } = render(<App />);
-//   const charactersTable = getByTestId(container, "charactersTable");
-//   expect(container).toBeTruthy();
-// });
