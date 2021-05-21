@@ -16,7 +16,9 @@ import { getCharacters, getHouses } from './service/httpService';
 import { Gender } from './service/constants';
 import Filters from './components/Filters/Filters';
 import PaginationButtons from './components/PaginationButtons';
-
+import { CircularProgress } from '@material-ui/core';
+import { Offline, Online } from 'react-detect-offline';
+import './App.css';
 
 
 function parseLinkHeaders (linkHeaders: string) {
@@ -58,8 +60,6 @@ function parseLinkHeaders (linkHeaders: string) {
 };
 
 function App(props: any) {
-
-
 
   const [isLoading, setIsLoading] = useState(true); 
   const [housesCache, setHousesCache] = useState<Array<House>>([]);
@@ -153,10 +153,11 @@ function App(props: any) {
   return (
     <div>
         {/* logo */}
-      <div>
-      GAME OF THRONES API - TANGO TASK
+      <div style={{fontFamily: 'GameOfThrones', fontSize: 20, textAlign: 'center'}}>
+        <span>Game of Thrones - Tango task</span>
       </div>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Online>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             {/* house display */}
             <Route path={"/house/:apiUrl"} 
@@ -165,18 +166,27 @@ function App(props: any) {
             <Route path={"/"}>
               <div>
               {
-                isLoading ? <> 'Loading...' </> : 
+                isLoading ? 
+                <div className='progressContainer' id='progressSpinnerApp'>
+                  <CircularProgress />
+                </div>
+                : 
                 <>
                 <Filters setPerPage={setPerPage} perPage={perPage} genderFilter={genderFilter} setGenderFilter={setGenderFilter} 
                 culture={cultureFilter} setCulture={setCultureFilter} cultureError={cultureError} />
                 <CharactersTable characters={characters} houses={housesCache} />
-                <PaginationButtons linkHeaders={linkHeaders} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                <PaginationButtons linkHeaders={linkHeaders} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
                 </>
               }
               </div>
             </Route>
           </Switch>
       </Router>
+    </Online>
+    <Offline>
+      Pardon mua, but you are offline. Please do check your internet connection before procceeding.
+    </Offline>
+      
     </div>
 
   );

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import CultureFilter from './CultureFilter';
 import GenderFilter from './GenderFilter';
 import PaginatationFilter from './PaginationFilter';
+import './Filters.css';
 
 function Filters(props: any) {
 
@@ -11,9 +12,17 @@ function Filters(props: any) {
         <>
         <AppBar position="sticky" color="default">
         <Toolbar>
+        <div className='filtersContainer'>
+            <div className='filterContainer'>
             <PaginatationFilter setPerPage={props.setPerPage} perPage={props.perPage} />
+            </div>
+            <div className='filterContainer'>
             <GenderFilter genderFilter={props.genderFilter} setGenderFilter={props.setGenderFilter} />
+            </div>
+            <div className='filterContainer'>
             <CultureFilter culture={props.culture} setCulture={props.setCulture} cultureError={props.cultureError} />
+            </div>
+        </div>
         </Toolbar>
       </AppBar>     
         </>

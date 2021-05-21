@@ -1,0 +1,11 @@
+.filterContainer {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.filtersContainer {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin: auto;
+}

@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'GameOfThrones';
-  src: local('got'), url(fonts/got.ttf) format('ttf');
-}
-
 .progressContainer {
     display: flex;
     padding-top: 5px;

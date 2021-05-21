@@ -1,6 +1,7 @@
 
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button, ButtonGroup, Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import './Pagination.css';
 
 function PaginationButtons(props : any) {
 
@@ -13,15 +14,16 @@ function PaginationButtons(props : any) {
     }
 
     return (
-        <>
-            <ButtonGroup color="primary" aria-label="outlined primary button group">
+        <div className="progressContainer">
+<ButtonGroup color="primary" aria-label="outlined primary button group">
                 <Button onClick={() => onClickHandle(props.linkHeaders.first)}>First page</Button>
                 <Button onClick={() => onClickHandle(props.linkHeaders.prev)}>Previous page</Button>
                 <Button disabled={true}> {props.currentPage} </Button>
                 <Button onClick={() => onClickHandle(props.linkHeaders.next)}>Next page</Button>
                 <Button onClick={() => onClickHandle(props.linkHeaders.last)}>Last page</Button>
             </ButtonGroup>
-        </>
+        </div>
+            
     )
 }
 

@@ -8,9 +8,9 @@ function PaginatationFilter(props: any) {
     props.setPerPage(event.target.value as number);
   };
 
-    return (
-        <>
-        <FormControl variant="filled">
+  return (
+    <>
+      <FormControl variant="filled">
         <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
@@ -24,8 +24,8 @@ function PaginatationFilter(props: any) {
           <MenuItem value={50}>50 results</MenuItem>
         </Select>
       </FormControl>
-        </>
-    )
+    </>
+  )
 }
 
 

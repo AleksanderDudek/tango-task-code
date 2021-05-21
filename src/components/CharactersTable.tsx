@@ -121,7 +121,7 @@ function getCurrentStatus(deathInfo: string, birthInfo: string) {
 function CharactersTable(data: IProps) {
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer id="charactersTable" component={Paper}>
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -145,7 +145,9 @@ function CharactersTable(data: IProps) {
                             <TableCell align="right" key={row.name + index + index + 'alive'}>{getCurrentStatus(row.died, row.born)}</TableCell>
                             <TableCell align="right" key={row.name + index + index + 'gender'}>{getGender(row.gender)}</TableCell>
                             <TableCell align="right" key={row.name + index + index + 'culture'}>{getCulture(row.culture)}</TableCell>
-                            <TableCell align="right" key={row.name + index + index + 'houses'}>{getAlliegences(row.allegiances, data.houses)}</TableCell>
+                            <TableCell align="right" key={row.name + index + index + 'houses'}>
+                                {getAlliegences(row.allegiances, data.houses)}
+                            </TableCell>
                             <TableCell align="right" key={row.name + index + index + 'books'}>{row.books.length + row.povBooks.length}</TableCell>
 
                         </TableRow>
