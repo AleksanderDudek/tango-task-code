@@ -13,7 +13,7 @@ function PaginationButtons(props : any) {
 
     return (
         <div className="progressContainer">
-<ButtonGroup color="primary" aria-label="outlined primary button group">
+            <ButtonGroup color="primary" aria-label="outlined primary button group">
                 <Button onClick={() => onClickHandle(props.linkHeaders.first)}>First page</Button>
                 <Button onClick={() => onClickHandle(props.linkHeaders.prev)}>Previous page</Button>
                 <Button disabled={true}> {props.currentPage} </Button>

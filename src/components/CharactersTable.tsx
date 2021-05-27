@@ -13,6 +13,8 @@ import {
     Link
 } from "react-router-dom";
 
+import './CharactersTable.css';
+
 interface IProps {
     characters: Array<Character>,
     houses: Array<House>
@@ -29,6 +31,16 @@ function getGender(gender: string) {
     const dg = gender && gender.length > 0 ? gender : 'Unknown';
 
     return dg;
+}
+
+function shouldAddSpace (index: number, array: HousesAndUris[] ) {
+
+    //edge case => only 1 element in array
+    if(array.length == 1 || array.length == 0) return false;
+
+    const isLastElement = index + 1 == array.length ? true: false;
+
+    return isLastElement ? false: true;
 }
 
 function getAlliegences(allegiances: Array<string>, houses: Array<House>) {
@@ -74,8 +86,8 @@ function getAlliegences(allegiances: Array<string>, houses: Array<House>) {
         });
     }
 
-    return housesAndUris.map((item: HousesAndUris) =>
-        <>
+    return housesAndUris.map((item: HousesAndUris, index: number, array: HousesAndUris[] ) =>
+        <div className={shouldAddSpace(index, array) ? 'linkActive' : 'link'}>
             <Link
                 key={item.houseName+item.houseUrl}
                 to={{
@@ -83,7 +95,7 @@ function getAlliegences(allegiances: Array<string>, houses: Array<House>) {
                 }}>
                 {item.houseName}
             </Link>
-        </>
+        </div>
     );
 }
 

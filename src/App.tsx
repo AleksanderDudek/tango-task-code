@@ -104,8 +104,15 @@ function App(props: any) {
     })
     }, []);
 
+  //
+  useEffect(() => {
+    console.log('per page changed')
+    setCurrentPage(1);
+  }, [perPage])
+
   //get characters when filters change or page number is changed
   useEffect(() => {
+    console.log('sth changed')
     setIsLoading(true);
     //check filters - does culture 'match' has to be strict? imo it should 
     //match some of the words 
@@ -128,13 +135,12 @@ function App(props: any) {
     //some error logger
     //simplified error flow
     setCultureError(true);
-
     setIsLoading(false);
-  })
+  });
     //create correct api 'shot'
     //set new data
 
-  }, [genderFilter, cultureFilter, perPage, currentPage]);
+  }, [genderFilter, cultureFilter, currentPage]);
   //
 
   return (
