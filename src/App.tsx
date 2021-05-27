@@ -16,6 +16,7 @@ import { CircularProgress } from '@material-ui/core';
 import { Offline, Online } from 'react-detect-offline';
 import './App.css';
 import useStateManagerSelector from './state/useStateManagerSelector';
+import Houses from './components/Houses';
 
 
 function App(props: any) {
@@ -45,6 +46,7 @@ function App(props: any) {
                 </div>
                 : 
                 <>
+                <Houses />
                 <Filters setPerPage={setPerPage} perPage={perPage} genderFilter={genderFilter} setGenderFilter={setGenderFilter} 
                 culture={cultureFilter} setCulture={setCultureFilter} cultureError={cultureError} />
                 <CharactersTable characters={characters} houses={housesCache}/>
