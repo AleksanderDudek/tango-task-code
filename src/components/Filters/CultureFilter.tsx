@@ -48,7 +48,7 @@ function CultureFilter(props: any) {
             />
         </FormControl>
         {open ? (
-          <div className={""}>
+          <div className={'cultureHelper'}>
             {arr.map(item => 
                 <List component="nav" aria-label="secondary mailbox folders">
                     <ListItem button>

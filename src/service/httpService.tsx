@@ -12,7 +12,7 @@ const charactersQueries = {
 };
 
 //get all characters
-export function getCharacters (pageIndex: number = 1, resultsPerPage: number = 10, 
+export function getCharacters (pageIndex: number = 1, resultsPerPage: number = 25, 
     gender: string = '', culture: string = '') {
    
     const fetchUrl = charactersApi 

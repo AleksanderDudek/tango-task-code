@@ -11,7 +11,7 @@ function PaginatationFilter(props: any) {
   return (
     <>
       <FormControl variant="filled">
-        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-filled-label">Per page</InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"
