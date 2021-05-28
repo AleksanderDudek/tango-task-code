@@ -2,12 +2,25 @@
 import { ClickAwayListener, FormControl, FormControlClassKey, List, ListItem, ListItemText } from '@material-ui/core';
 import TextField, { TextFieldClassKey } from '@material-ui/core/TextField';
 import React, { useEffect, useState,  } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from '../../state/store';
+
+const maxTypingTime = 1500;
+let typingTimer: any;
+
+function getCultureFromSearchParams (url: string) {
+
+  const tempUrl = new URL(url);
+  const culture = (String)(tempUrl.searchParams.get("culture"));
+
+  return culture;
+}
 
 function CultureFilter(props: any) {
     const arr = ["kek", "kek1", "lol", "wolololo"];
 
-    let typingTimer: any;
-    const maxTypingTime = 2000;
+    const apiCalls = useSelector((state: RootState) => state.successfullApiCallsData.successfullApiCalls);
+
     
     const [open, setOpen] = useState(false);
 
@@ -21,8 +34,18 @@ function CultureFilter(props: any) {
 
     const onTypingDone = (culture: string) => {
         //set state 
+        console.log('kek ', culture)
         props.setCulture(culture);
         handleClickAway();
+    }
+
+    const onListItemClick = (culture: string) => {
+      //set state 
+      console.log('kek list ', culture)
+
+      clearTimeout(typingTimer);
+      props.setCulture(culture);
+      handleClickAway();
     }
 
     function onKeyUp(event: any) {
@@ -49,10 +72,10 @@ function CultureFilter(props: any) {
         </FormControl>
         {open ? (
           <div className={'cultureHelper'}>
-            {arr.map(item => 
+            {apiCalls.map(item => 
                 <List component="nav" aria-label="secondary mailbox folders">
                     <ListItem button>
-                    <ListItemText primary={item} />
+                    <ListItemText primary={getCultureFromSearchParams(item.apiCall)} onClick={ () => onListItemClick(getCultureFromSearchParams(item.apiCall))} />
                     </ListItem>
                 </List>
             )}
@@ -66,4 +89,4 @@ function CultureFilter(props: any) {
 }
 
 
-export default CultureFilter;
+export default React.memo(CultureFilter);

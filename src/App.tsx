@@ -46,7 +46,7 @@ function App(props: any) {
                 </div>
                 : 
                 <>
-                <Houses />
+                {/* <Houses /> */}
                 <Filters setPerPage={setPerPage} perPage={perPage} genderFilter={genderFilter} setGenderFilter={setGenderFilter} 
                 culture={cultureFilter} setCulture={setCultureFilter} cultureError={cultureError} />
                 <CharactersTable characters={characters} houses={housesCache}/>

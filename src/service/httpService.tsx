@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const charactersApi= 'https://www.anapioficeandfire.com/api/characters';
+export const charactersApi= 'https://www.anapioficeandfire.com/api/characters';
 
-const housesApi = 'https://www.anapioficeandfire.com/api/houses';
+export const housesApi = 'https://www.anapioficeandfire.com/api/houses';
 
 const charactersQueries = {
     page: '?page=',
@@ -11,16 +11,23 @@ const charactersQueries = {
     culture: '&culture='
 };
 
-//get all characters
-export function getCharacters (pageIndex: number = 1, resultsPerPage: number = 25, 
-    gender: string = '', culture: string = '') {
-   
-    const fetchUrl = charactersApi 
+export function createCharactersApiCallUrl (pageIndex: number, resultsPerPage: number, 
+    gender: string, culture: string) {
+
+        const fetchUrl = charactersApi 
         + charactersQueries.page + pageIndex.toString()
         + charactersQueries.pageSize + resultsPerPage.toString()
         + charactersQueries.gender + gender
         + charactersQueries.culture + culture;
 
+        return fetchUrl;
+    }
+
+//get all characters
+export function getCharacters (pageIndex: number = 1, resultsPerPage: number = 25, 
+    gender: string = '', culture: string = '') {
+   
+    const fetchUrl = createCharactersApiCallUrl(pageIndex, resultsPerPage, gender, culture);
 
     return axios.get(fetchUrl);
 }

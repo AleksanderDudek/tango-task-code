@@ -1,8 +1,12 @@
 import Character, { HeaderLinks } from "../models/Character";
 import { useEffect, useState } from 'react';
 import House from "../models/House";
-import { getCharacters, getHouses } from "../service/httpService";
+import { createCharactersApiCallUrl, getCharacters, getHouses } from "../service/httpService";
 import { Gender } from "../service/constants";
+
+import { useDispatch, useSelector } from "react-redux";
+import { sagaActions } from "../state/sagaActions";
+import { RootState } from "./store";
 
 function parseLinkHeaders (linkHeaders: string) {
     let arrData = linkHeaders.split("link:");
@@ -43,6 +47,10 @@ function parseLinkHeaders (linkHeaders: string) {
   };
 
 const useStateManagerSelector = () => {
+
+  const dispatch = useDispatch();
+  const apiCalls = useSelector((state: RootState) => state.successfullApiCallsData.successfullApiCalls);
+
   const [isLoading, setIsLoading] = useState(true); 
   const [housesCache, setHousesCache] = useState<Array<House>>([]);
   const [characters, setCharacters] = useState<Array<Character>>([]);
@@ -66,6 +74,7 @@ const useStateManagerSelector = () => {
 
         //simplified error flow
         setCultureError(false);
+
         return response.data;
       }, rejection => {
 
@@ -74,6 +83,17 @@ const useStateManagerSelector = () => {
         return characters;
       }).then(data => {
         setCharacters(data);
+
+        //dispatch api call and successful response to redux store
+        //*cache* could be used for quicker data serving + alongside we can 
+        //have ongoing api call that will update store if there is new data
+
+        const newApiCall = { 
+          apiCall: createCharactersApiCallUrl(currentPage, perPage, genderFilter, cultureFilter), 
+          characters: data
+        };
+
+        dispatch({ type: sagaActions.PUT_SUCCESSFULL_API_CALLS_SAGA, ...newApiCall });
       }),
       getHouses().then( response => { return response.data;
       }, rejection => {
@@ -110,6 +130,17 @@ const useStateManagerSelector = () => {
       return characters;
     }).then(data => {
       setCharacters(data);
+
+        //dispatch api call and successful response to redux store
+        //*cache* could be used for quicker data serving + alongside we can 
+        //have ongoing api call that will update store if there is new data
+
+        const newApiCall = { 
+          apiCall: createCharactersApiCallUrl(currentPage, perPage, genderFilter, cultureFilter), 
+          characters: data
+        };
+
+        dispatch({ type: sagaActions.PUT_SUCCESSFULL_API_CALLS_SAGA, ...newApiCall });
     }).then((concArray) => {
     setIsLoading(false);
   }).catch(error => { 
