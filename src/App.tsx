@@ -1,14 +1,10 @@
 import './App.css';
 import CharactersTable from './components/CharactersTable';
 import HouseDetails from './components/HouseDetails';
-import House from './models/House'
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-
 } from "react-router-dom";
 import Filters from './components/Filters/Filters';
 import PaginationButtons from './components/PaginationButtons';
@@ -16,7 +12,6 @@ import { CircularProgress } from '@material-ui/core';
 import { Offline, Online } from 'react-detect-offline';
 import './App.css';
 import useStateManagerSelector from './state/useStateManagerSelector';
-import Houses from './components/Houses';
 
 
 function App(props: any) {
@@ -46,7 +41,6 @@ function App(props: any) {
                 </div>
                 : 
                 <>
-                {/* <Houses /> */}
                 <Filters setPerPage={setPerPage} perPage={perPage} genderFilter={genderFilter} setGenderFilter={setGenderFilter} 
                 culture={cultureFilter} setCulture={setCultureFilter} cultureError={cultureError} />
                 <CharactersTable characters={characters} houses={housesCache}/>

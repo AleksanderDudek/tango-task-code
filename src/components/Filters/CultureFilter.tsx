@@ -34,15 +34,12 @@ function CultureFilter(props: any) {
 
     const onTypingDone = (culture: string) => {
         //set state 
-        console.log('kek ', culture)
         props.setCulture(culture);
         handleClickAway();
     }
 
     const onListItemClick = (culture: string) => {
       //set state 
-      console.log('kek list ', culture)
-
       clearTimeout(typingTimer);
       props.setCulture(culture);
       handleClickAway();

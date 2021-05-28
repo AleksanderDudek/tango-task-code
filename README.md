@@ -2,6 +2,9 @@
 
 Added offline behaviour as a bonus (disconnect your network to evaluate)
 
+Added redux-saga + redux toolkit. Created custom culture helper based
+on hstoric data (successful api calls)
+
 Evaluation criteria
 There are certain aspects that will be considered when evaluating your solution:
 - code quality +

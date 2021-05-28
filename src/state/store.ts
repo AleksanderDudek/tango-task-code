@@ -37,6 +37,46 @@ const charactersSlice = createSlice({
   }
 });
 
+function getCultureFromSearchParams (url: string) {
+
+  const tempUrl = new URL(url);
+  const culture = (String)(tempUrl.searchParams.get("culture"));
+
+  return culture;
+}
+
+function strcmp ( str1, str2 ) {
+  // http://kevin.vanzonneveld.net
+  // +   original by: Waldo Malqui Silva
+  // +      input by: Steve Hilder
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +    revised by: gorthaur
+  // *     example 1: strcmp( 'waldo', 'owald' );
+  // *     returns 1: 1
+  // *     example 2: strcmp( 'owald', 'waldo' );
+  // *     returns 2: -1
+
+  return ( ( str1 == str2 ) ? true : false );
+}
+
+function checkIfApiCallShouldBeAddedToCache(apiCalls: any[], newApiCall: string) {
+
+  const newCulture = getCultureFromSearchParams(newApiCall)
+
+  //edge case for no culture added
+  if(newCulture.length == 0) return false; 
+
+  //we check if culture exists
+  for(let i = 0; i<apiCalls.length; i++) {
+    let tempCulture = getCultureFromSearchParams(apiCalls[i].apiCall);
+    //return false if already exists
+    if((Boolean)(strcmp(newCulture, tempCulture))) return false;
+  }
+
+  return true;
+}
+
+//in future this could support caching policy for non-sensitive data
 const successfullApiCallsSlice = createSlice({
   name: 'successfullApiCallsData',
   initialState: {
@@ -45,9 +85,14 @@ const successfullApiCallsSlice = createSlice({
   reducers: {
     putSuccessfullApiCalls: (state, action) => {
 
+      //copy
       const newState = state.successfullApiCalls.slice();
 
-      newState.push({ apiCall: action.payload.apiCall, characters: action.payload.characters });
+      //check if already exists
+      const shouldBeAdded = checkIfApiCallShouldBeAddedToCache([...newState ], action.payload.apiCall);
+
+      if(shouldBeAdded) newState.push({ apiCall: action.payload.apiCall, characters: action.payload.characters });
+      
 
       return {
         successfullApiCalls: [...newState ]
