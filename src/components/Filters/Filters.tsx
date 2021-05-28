@@ -10,8 +10,8 @@ function Filters(props: any) {
     return (
         <>
         <AppBar position="sticky" color="default">
-        <Toolbar >
-         <div className={'header'}>
+        <Toolbar className={'header'}>
+         <div>
                {/* logo */}
             <div style={{fontFamily: 'GameOfThrones', fontSize: 20, textAlign: 'center'}}>
                 <span>Game of Thrones - Tango task</span>
