@@ -1,6 +1,5 @@
 
 import { Button, ButtonGroup, Container } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
 import './Pagination.css';
 
 function PaginationButtons(props : any) {
@@ -24,6 +23,5 @@ function PaginationButtons(props : any) {
             
     )
 }
-
 
 export default PaginationButtons;

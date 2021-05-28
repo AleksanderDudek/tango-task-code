@@ -1,8 +1,8 @@
 
-import { ClickAwayListener, FormControl, FormControlClassKey, List, ListItem, ListItemText } from '@material-ui/core';
-import TextField, { TextFieldClassKey } from '@material-ui/core/TextField';
-import React, { useEffect, useState,  } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { ClickAwayListener, FormControl, List, ListItem, ListItemText } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import React, {  useState,  } from 'react';
+import {  useSelector } from "react-redux";
 import { RootState } from '../../state/store';
 
 const maxTypingTime = 2000;
@@ -17,8 +17,6 @@ function getCultureFromSearchParams (url: string) {
 }
 
 function CultureFilter(props: any) {
-    const arr = ["kek", "kek1", "lol", "wolololo"];
-
     const apiCalls = useSelector((state: RootState) => state.successfullApiCallsData.successfullApiCalls);
 
     

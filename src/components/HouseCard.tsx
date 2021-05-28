@@ -1,5 +1,4 @@
 import {  Card, CardContent, Chip, Typography } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
 import CheckOutlinedIcon from '@material-ui/icons/CheckOutlined';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 

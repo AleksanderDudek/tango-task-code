@@ -1,6 +1,6 @@
 
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function PaginatationFilter(props: any) {
 

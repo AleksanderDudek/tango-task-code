@@ -1,6 +1,5 @@
 
 import { AppBar, Toolbar } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
 import CultureFilter from './CultureFilter';
 import GenderFilter from './GenderFilter';
 import PaginatationFilter from './PaginationFilter';

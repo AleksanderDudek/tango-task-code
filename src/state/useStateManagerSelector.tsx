@@ -4,9 +4,8 @@ import House from "../models/House";
 import { createCharactersApiCallUrl, getCharacters, getHouses } from "../service/httpService";
 import { Gender } from "../service/constants";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sagaActions } from "../state/sagaActions";
-import { RootState } from "./store";
 
 function parseLinkHeaders(linkHeaders: string) {
   let arrData = linkHeaders.split("link:");

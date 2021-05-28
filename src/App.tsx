@@ -16,8 +16,8 @@ import useStateManagerSelector from './state/useStateManagerSelector';
 
 function App(props: any) {
 
-  const { isLoading, setPerPage, perPage, genderFilter, setGenderFilter, cultureFilter, setCultureFilter, cultureError, characters, setCharacters,
-        linkHeaders, setLinkHeaders, housesCache, setHousesCache, currentPage, setCurrentPage } = useStateManagerSelector();
+  const { isLoading, setPerPage, perPage, genderFilter, setGenderFilter, cultureFilter, setCultureFilter, cultureError, characters,
+        linkHeaders, housesCache, currentPage, setCurrentPage } = useStateManagerSelector();
  
   return (
     <div>
