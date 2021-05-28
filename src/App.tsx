@@ -21,10 +21,6 @@ function App(props: any) {
  
   return (
     <div>
-        {/* logo */}
-      <div style={{fontFamily: 'GameOfThrones', fontSize: 20, textAlign: 'center'}}>
-        <span>Game of Thrones - Tango task</span>
-      </div>
       <Online>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>

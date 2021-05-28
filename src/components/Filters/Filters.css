@@ -11,5 +11,14 @@
 }
 
 .cultureHelper {
-    z-index: 100;
+    position: fixed;
+    z-index: 2;
+    background-color: wheat;
+    border-radius: 5px;
+    border-color: gray;
+    border: 1.5px groove;
+}
+
+.header {
+    display: block;
 }

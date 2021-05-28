@@ -45,18 +45,9 @@ function getCultureFromSearchParams (url: string) {
   return culture;
 }
 
-function strcmp ( str1, str2 ) {
-  // http://kevin.vanzonneveld.net
-  // +   original by: Waldo Malqui Silva
-  // +      input by: Steve Hilder
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: gorthaur
-  // *     example 1: strcmp( 'waldo', 'owald' );
-  // *     returns 1: 1
-  // *     example 2: strcmp( 'owald', 'waldo' );
-  // *     returns 2: -1
+function strCmp ( str1: string, str2: string ) {
 
-  return ( ( str1 == str2 ) ? true : false );
+  return ( ( str1.toLowerCase() == str2.toLowerCase() ) ? true : false );
 }
 
 function checkIfApiCallShouldBeAddedToCache(apiCalls: any[], newApiCall: string) {
@@ -70,7 +61,7 @@ function checkIfApiCallShouldBeAddedToCache(apiCalls: any[], newApiCall: string)
   for(let i = 0; i<apiCalls.length; i++) {
     let tempCulture = getCultureFromSearchParams(apiCalls[i].apiCall);
     //return false if already exists
-    if((Boolean)(strcmp(newCulture, tempCulture))) return false;
+    if((Boolean)(strCmp(newCulture, tempCulture))) return false;
   }
 
   return true;

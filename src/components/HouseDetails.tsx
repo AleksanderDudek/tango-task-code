@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import House from '../models/House';
 import { getHouse } from '../service/httpService';
 import HouseCard from './HouseCard';
-
+import './Filters/Filters.css';
 
 function HouseDetails(props: any) {
 
@@ -23,8 +23,14 @@ function HouseDetails(props: any) {
     return (
         <>
             <AppBar position="sticky" color="default">
-                <Toolbar>
-                    <Link to={process.env.PUBLIC_URL + "/"}>Go back</Link>
+                <Toolbar style={{display: 'inline' }}>
+                       {/* logo */}
+                    <div style={{fontFamily: 'GameOfThrones', fontSize: 20, textAlign: 'center'}}>
+                        <span>Game of Thrones - Tango task</span>
+                    </div>
+                    <div>
+                        <Link to={process.env.PUBLIC_URL + "/"}>Go back</Link>
+                    </div>
                 </Toolbar>
             </AppBar>
             {isLoading ? 

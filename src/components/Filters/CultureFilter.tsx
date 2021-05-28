@@ -5,7 +5,7 @@ import React, { useEffect, useState,  } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '../../state/store';
 
-const maxTypingTime = 1500;
+const maxTypingTime = 2000;
 let typingTimer: any;
 
 function getCultureFromSearchParams (url: string) {
@@ -59,7 +59,7 @@ function CultureFilter(props: any) {
     return (
         <>
         <ClickAwayListener onClickAway={handleClickAway}>
-      <div className={""}>
+      <div>
         <FormControl>
             <TextField id="outlined-basic" label="Culture" variant="outlined" placeholder="Type culture..." 
              defaultValue={props.culture} 
@@ -69,9 +69,9 @@ function CultureFilter(props: any) {
         </FormControl>
         {open ? (
           <div className={'cultureHelper'}>
-            {apiCalls.map(item => 
+            {apiCalls.map((item: any, index: number) => 
                 <List component="nav" aria-label="secondary mailbox folders">
-                    <ListItem button>
+                    <ListItem button key={'li-' + index}>
                     <ListItemText primary={getCultureFromSearchParams(item.apiCall)} onClick={ () => onListItemClick(getCultureFromSearchParams(item.apiCall))} />
                     </ListItem>
                 </List>

@@ -131,6 +131,10 @@ const useStateManagerSelector = () => {
         })
       .then(
         data => {
+
+          //api behaves weird and sometimes responses with empty array
+          if(data.length == 0) throw Error('empty response');
+
           setCharacters(data);
 
           //dispatch api call and successful response to redux store
@@ -150,6 +154,7 @@ const useStateManagerSelector = () => {
       .catch(error => {
         //some error logger
         //simplified error flow
+        console.log(error)
         setCultureError(true);
         setIsLoading(false);
       })

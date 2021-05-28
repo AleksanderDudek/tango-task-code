@@ -89,7 +89,7 @@ function getAlliegences(allegiances: Array<string>, houses: Array<House>) {
     return housesAndUris.map((item: HousesAndUris, index: number, array: HousesAndUris[] ) =>
         <div className={shouldAddSpace(index, array) ? 'linkActive' : 'link'}>
             <Link
-                key={item.houseName+item.houseUrl}
+                key={item.houseName+item.houseUrl+index}
                 to={{
                     pathname: "/house/"+item.houseUrl,
                 }}>
@@ -149,9 +149,9 @@ function CharactersTable(data: IProps) {
                 </TableHead>
                 <TableBody>
                     {data.characters.map((row: Character, index: number) => (
-                        <TableRow key={row.name + index}>
+                        <TableRow key={row.name + index + '-row'}>
                             <TableCell key={"Index"+ index}>{index+1}</TableCell>
-                            <TableCell key={row.name + index + index} component="th" scope="row">
+                            <TableCell key={row.name + index + index +'name'} component="th" scope="row">
                                 {getFullName(row.name, row.aliases)}
                             </TableCell>
                             <TableCell align="right" key={row.name + index + index + 'alive'}>{getCurrentStatus(row.died, row.born)}</TableCell>
